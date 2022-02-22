@@ -3,7 +3,7 @@ import consulta as c
 
 root = tk.Tk()
 
-root.geometry('400x200')
+root.geometry('600x200')
 root.title("Monitor Maestro")
 root.iconbitmap('equiplano-logo-vertical.ico')
 
@@ -23,7 +23,7 @@ def tick():
         sec = 0
         if sec == 0:
             inf_1, inf_2 = consulta.login()
-            resposta['text'] = 'Última verificação do maestro com sucesso: ' + inf_1
+            resposta['text'] = 'Última consulta com sucesso: ' + inf_1
             erro['text'] = inf_2
             time['text'] = int(inicio.get())
             root.update()
@@ -59,4 +59,4 @@ root.mainloop()
 
 tick()
 
-#pyinstaller --onefile -n csv_to_postgre --noconsole main.py
+#pyinstaller --onefile -n MaestroMonitoring --noconsole --icon=equiplano-logo-vertical.ico main.py

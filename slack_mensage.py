@@ -13,7 +13,7 @@ def mensage_slack(msg):
         headers={'Content-Type': 'application/json'}
     )
     if response.status_code != 200:
-        raise ValueError(
-            'A requisição retornou um erro %s, a resposta é:\n%s'
+        return ValueError(
+            'A requisição retornou um erro %s, a resposta é:\n%s, sem conexão com slack.'
             % (response.status_code, response.text))
     return "Maestro pode estar parado."

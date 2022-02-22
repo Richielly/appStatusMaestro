@@ -15,6 +15,8 @@ chrome_options = Options()
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--disable-gpu')
+
 
 browser = webdriver.Chrome(executable_path=r"chromedriver.exe",options=chrome_options)
 
@@ -22,7 +24,7 @@ class Consulta:
 
     def login(self, usuario=config['default']["usuario"],senha=config['default']["senha"]):
         try:
-            erro = ""
+            erro = "Sem erros"
             browser.get("http://equiplano.toledo.pr.gov.br:7474/maestro/maestroLogin/load")
             username = browser.find_element_by_id("login")
             password = browser.find_element_by_id("senha")
@@ -61,7 +63,5 @@ class Consulta:
             if ((hora + minuto) > int(config['default']["tempo_maestro"])):
                 print(True)
                 erro = slack_mensage.mensage_slack('O maestro de Toledo pode estar parado. \núltima consulta com sucesso: ' + data)
-
             return data, erro
-        except: print("Problema ao tentar fazer acesso em: " + datetime.now().strftime('%d/%m/%Y %H:%M'))
-        return False
+        except: return data, "Problema ao tentar fazer acesso em: " + datetime.now().strftime('%d/%m/%Y %H:%M'), 'Tempo para conexão excedido'

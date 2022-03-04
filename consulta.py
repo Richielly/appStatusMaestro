@@ -63,5 +63,7 @@ class Consulta:
             if ((hora + minuto) > int(config['default']["tempo_maestro"])):
                 print(True)
                 erro = slack_mensage.mensage_slack('O maestro de Toledo pode estar parado. \núltima consulta com sucesso: ' + data)
-            return data, erro
-        except: return data, "Problema ao tentar fazer acesso em: " + datetime.now().strftime('%d/%m/%Y %H:%M'), 'Tempo para conexão excedido'
+                return erro
+            else:
+                return "Última consulta com sucesso: " + data
+        except: return "Problema ao tentar fazer acesso em: " + datetime.now().strftime('%d/%m/%Y %H:%M'), 'Tempo para conexão excedido'

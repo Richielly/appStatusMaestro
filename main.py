@@ -1,5 +1,6 @@
 import tkinter as tk
 import consulta as c
+import push
 
 root = tk.Tk()
 
@@ -12,7 +13,7 @@ consulta = c.Consulta()
 def tick():
     global sec
     global respostas
-
+    inf_1, inf_2 = "",""
     if sec == None or sec == 0:
 
         sec = int(inicio.get())*60
@@ -22,9 +23,12 @@ def tick():
         root.update()
         sec = 0
         if sec == 0:
-            inf_1, inf_2 = consulta.login()
-            resposta['text'] = 'Última consulta com sucesso: ' + inf_1
-            erro['text'] = inf_2
+            msg = consulta.login()
+            resposta['text'] = msg
+            erro['text'] = msg
+            if(inf_2 != 'Sem erros'):
+                push.push()
+                root.update()
             time['text'] = int(inicio.get())
             root.update()
             tick()

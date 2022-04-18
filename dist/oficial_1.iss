@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Maestro Monitoring"
-#define MyAppVersion "1.0.1"
+#define MyAppVersion "1.2.1"
 #define MyAppPublisher "@Richielly"
 #define MyAppExeName "MaestroMonitoring.exe"
 #define MyAppAssocName MyAppName + " File"

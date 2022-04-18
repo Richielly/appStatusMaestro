@@ -10,11 +10,13 @@ def mensage_slack(msg):
     slack = config['default']["slack"]
     slack_data = {'text': msg}
     if (slack == 'ativo'):
-            print('msg slack')
-            response = requests.post(
-                webhook_url, data=json.dumps(slack_data),
-                headers={'Content-Type': 'application/json'}
-            )
+
+        print('msg slack')
+        response = requests.post(
+            webhook_url, data=json.dumps(slack_data),
+            headers={'Content-Type': 'application/json'})
+    else:
+        return 'Maestro pode estar parado.'
     if response.status_code != 200:
         return ValueError(
             'A requisição retornou um erro %s, a resposta é:\n%s, '

@@ -7,11 +7,14 @@ config.read("config.ini");
 
 def mensage_slack(msg):
     webhook_url = config['default']["webhook_url"]
+    slack = config['default']["slack"]
     slack_data = {'text': msg}
-    response = requests.post(
-        webhook_url, data=json.dumps(slack_data),
-        headers={'Content-Type': 'application/json'}
-    )
+    if (slack == 'ativo'):
+            print('msg slack')
+            response = requests.post(
+                webhook_url, data=json.dumps(slack_data),
+                headers={'Content-Type': 'application/json'}
+            )
     if response.status_code != 200:
         return ValueError(
             'A requisição retornou um erro %s, a resposta é:\n%s, '

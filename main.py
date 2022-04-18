@@ -24,21 +24,28 @@ def tick():
         sec = 0
         if sec == 0:
             msg = consulta.login()
-            resposta['text'] = msg
-            erro['text'] = msg
-            if(inf_2 != 'Sem erros'):
+
+
+            if msg == 'Maestro pode estar parado.':
+                erro['text'] = msg
                 push.push()
                 root.update()
+            else:
+                resposta['text'] = msg
+
             time['text'] = int(inicio.get())
             root.update()
             tick()
     else:
         sec = sec - 1
         relogio = int(sec/60)
+        if sec%2:
+            t = '. . .'
+        else: t = ' . . '
         if relogio > 1:
-            time['text'] = 'A próxima consulta será realizada em menos de ' + str(relogio+1) + ' minutos.'
+            time['text'] = 'A próxima consulta será realizada em menos de '+ str(relogio+1) + ' minutos ' + t
         elif relogio == 1:
-            time['text'] = 'A próxima consulta será realizada em menos de ' + str(relogio+1) + ' minuto.'
+            time['text'] = 'A próxima consulta será realizada em menos de ' + str(relogio+1) + ' minuto ' + t
         else:
             time['text'] = 'Restam ' + str(sec) + ' segundos para próxima consulta.'
         time.after(1000, tick)
@@ -59,7 +66,6 @@ tk.Button(root, fg='blue', text='Start', command=tick, state='normal').pack()
 
 root.update()
 root.mainloop()
-
 
 tick()
 

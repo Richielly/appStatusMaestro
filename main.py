@@ -1,6 +1,9 @@
 import tkinter as tk
 import consulta as c
 import push
+import slack_mensage
+import time
+from datetime import datetime
 
 root = tk.Tk()
 
@@ -13,10 +16,17 @@ consulta = c.Consulta()
 def tick():
     global sec
     global respostas
-    inf_1, inf_2 = "",""
+
+    hora = datetime.now().strftime('%H:%M:%S')
+
     if sec == None or sec == 0:
 
         sec = int(inicio.get())*60
+
+
+    if hora in ['07:00:00', '12:00:00', '17:00:00']:
+        print(hora)
+        slack_mensage.mensage_slack('Olá ... fiquem tranquilos ... estou monitorando o Maestro de Toledo ... :white_check_mark:')
 
     if sec == 1:
         time['text'] = 'Consultando...'
@@ -24,7 +34,7 @@ def tick():
         sec = 0
         if sec == 0:
             msg = consulta.login()
-
+            print(msg)
 
             if msg == 'Maestro pode estar parado.':
                 erro['text'] = msg

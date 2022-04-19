@@ -4,7 +4,8 @@ from selenium.webdriver.chrome.options import Options
 from datetime import datetime
 import time
 
-import consulta
+import push
+
 import slack_mensage
 import configparser
 
@@ -62,6 +63,7 @@ class Consulta:
 
             if ((hora + minuto) > int(config['default']["tempo_maestro"])):
                 print(True)
+                push.push()
                 erro = slack_mensage.mensage_slack('O maestro de Toledo pode estar parado. \núltima consulta com sucesso: ' + data)
                 return erro
             else:

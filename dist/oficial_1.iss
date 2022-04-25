@@ -22,7 +22,7 @@ ChangesAssociations=yes
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename=C:\Users\richielly.carvalho\PycharmProjects\appStatusMaestro\dist\Executavel
+OutputBaseFilename=C:\Users\richielly.carvalho\PycharmProjects\appStatusMaestro\dist\Executavel_1_2_1
 SetupIconFile=C:\Users\richielly.carvalho\PycharmProjects\appStatusMaestro\dist\equiplano-logo-vertical.ico
 Password=es74079
 Compression=lzma

@@ -42,6 +42,7 @@ def tick():
                 root.update()
             else:
                 resposta['text'] = msg
+                root.update()
 
             time['text'] = int(inicio.get())
             root.update()
